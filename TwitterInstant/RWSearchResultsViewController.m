@@ -13,45 +13,43 @@
 
 @interface RWSearchResultsViewController ()
 
-@property (nonatomic, strong) NSArray *tweets;
+@property(nonatomic, strong) NSArray *tweets;
 @end
 
 @implementation RWSearchResultsViewController {
-
 }
 
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-  
-  self.tweets = [NSArray array];
-  
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.tweets = [NSArray array];
 }
 
 - (void)displayTweets:(NSArray *)tweets {
-  self.tweets = tweets;
-  [self.tableView reloadData];
+    self.tweets = tweets;
+    [self.tableView reloadData];
 }
-
 
 #pragma mark - Table view data source
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  return self.tweets.count;
+- (NSInteger)tableView:(UITableView *)tableView
+    numberOfRowsInSection:(NSInteger)section {
+    return self.tweets.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  static NSString *CellIdentifier = @"Cell";
-  RWTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-  
-  RWTweet *tweet = self.tweets[indexPath.row];
-  cell.twitterStatusText.text = tweet.status;
-  cell.twitterUsernameText.text = [NSString stringWithFormat:@"@%@",tweet.username];
-  
-  return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    RWTableViewCell *cell =
+        [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                        forIndexPath:indexPath];
+
+    RWTweet *tweet = self.tweets[indexPath.row];
+    cell.twitterStatusText.text = tweet.status;
+    cell.twitterUsernameText.text =
+        [NSString stringWithFormat:@"@%@", tweet.username];
+
+    return cell;
 }
 
 @end
